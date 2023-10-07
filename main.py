@@ -3,12 +3,12 @@ import pandas as pd
 from google.cloud import bigquery
 import os
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './credentials.json.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './credentials.json'
 client = bigquery.Client()
 
 # Define your BigQuery dataset and table names
-dataset_id = 'dataset_futurum'
-table_name = 'table2_futurum'
+dataset_id = 'schema'
+table_name = 'speedtest_t1'
 
 # Read the table 
 df = (spark.sql(f'SELECT * FROM speedtest_t1 limit 100')).toPandas()
@@ -23,6 +23,6 @@ sql = 'SELECT * FROM dataset_futurum.table_futurum LIMIT 10'
 query = f"SELECT * FROM `{dataset_id}.{table_name}`"
 
 # Use the BigQuery client to execute the query and get the results as a DataFrame
-df1 = client.query(query).to_dataframe()
-df1
+quey_result = client.query(query).to_dataframe()
+display(quey_result)
 
